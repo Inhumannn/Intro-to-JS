@@ -4,24 +4,22 @@ const theme = document.querySelector('body');
 const themeLogo = document.querySelector( '#logo')
 // Chargement de la page on vérifie si les thèmes dark y est ou pas (localStorage)
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
+const savedLogo = localStorage.getItem('logo');
+if(savedTheme === 'dark'){
    // Ajoute le thème dark
-   theme.classList.add('darkmondeon');  
-}
+   theme.classList.add('darkmondeon');
+   themeLogo.src = theme.classList.contains('darkmondeon') ? "img/logo-blanc.png" : "img/logo-noir.png";
+};
 // Ecoute du click
 themeswitch.addEventListener('click', (e) => {
    e.preventDefault();
+   // Ajoute la classe "darkmondeon"
    theme.classList.toggle('darkmondeon'); 
    // Sauvegarde l'état du thème (localStorage) // Changement du thème, logo
-   if (theme.classList.contains('darkmondeon')) {
-      localStorage.setItem('theme', 'dark'); 
-      themeLogo.src = "img/logo-blanc.png";
-   } else {
-      localStorage.setItem('theme', 'light');
-      themeLogo.src = "img/logo-noir.png" ; 
-   }
+   localStorage.setItem('theme', theme.classList.contains('darkmondeon') ? 'dark' : 'light');
+   themeLogo.src = theme.classList.contains('darkmondeon') ? "img/logo-blanc.png" : "img/logo-noir.png";
 });
-// Mondale pour l'inscription
+// Modal
 const dial = `
 <dialog id="userDialog">
    <form action="#">
@@ -100,7 +98,7 @@ btn_form.addEventListener('click', (e) => {
       }
    }
    const form_precision = document.querySelector('#form_precision').value;
-   // Mondale
+   // Modal
    const form = `
       <dialog id="userFrom">
          <p>Votre formulaire a bien été pris en compte. Voici les informations :</p>
@@ -134,7 +132,7 @@ btn_form.addEventListener('click', (e) => {
 const btn_registration = document.querySelector('#inscription');
 btn_registration.addEventListener('click', (e) => {
    e.preventDefault();
-   // Mondale
+   // Modal
    const formPopUp = `
       <div id="userFormPopUp">
          <h1 class="subtitle">Contactez-nous</h1>
@@ -155,10 +153,10 @@ btn_registration.addEventListener('click', (e) => {
             <input id="submit_popup" type="submit" value="Envoyer la demande">                    
          </form>
       </div>`;
-
+   // Vérifie si le modal existe déjà
    const userFormPopUp = document.querySelector('#userFormPopUp');
    if (!document.querySelector('#userFormPopUp')) {
-      dialogContainer.insertAdjacentHTML('afterend', formPopUp);
+      userFormPopUp.insertAdjacentHTML('afterend', formPopUp);
    }
 
    userFormPopUp.showModal();
@@ -168,5 +166,24 @@ btn_registration.addEventListener('click', (e) => {
          e.preventDefault();
          userFormPopUp.close();
       }
+   });
+    // Soumission du formulaire
+   const form = userFormPopUp.querySelector('form');
+   form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form_name = document.querySelector('#form_name_popup').value;
+      const form_phone = document.querySelector('#form_phone_popup').value;
+      const form_company = document.querySelector('#form_company_popup').value;
+      const form_mail = document.querySelector('#form_mail_popup').value;
+      const form_precision = document.querySelector('#form_precision_popup').value;
+      const form_option = document.querySelector('#form_option_popup').value;
+      // Vérification des champs avant de soumettre
+      if (!form_name || !form_phone || !form_company || !form_mail || !form_precision || !form_option) {
+         alert("Veuillez remplir tous les champs !");
+         return;
+      };
+      // Message d'alert
+      userFormPopUp.close();
+      alert("Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.");
    });
 });
