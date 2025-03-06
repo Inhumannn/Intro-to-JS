@@ -1,30 +1,27 @@
+// Const darkmode
 const themeswitch = document.querySelector('#darkmode');
 const theme = document.querySelector('body');
 const themeLogo = document.querySelector( '#logo')
-
 // Chargement de la page on vérifie si les thèmes dark y est ou pas (localStorage)
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
    // Ajoute le thème dark
    theme.classList.add('darkmondeon');  
 }
-
+// Ecoute du click
 themeswitch.addEventListener('click', (e) => {
    e.preventDefault();
    theme.classList.toggle('darkmondeon'); 
-
-   // Sauvegarde l'état du thème
+   // Sauvegarde l'état du thème (localStorage) // Changement du thème, logo
    if (theme.classList.contains('darkmondeon')) {
-      localStorage.setItem('theme', 'dark');  // Si c'est dark
+      localStorage.setItem('theme', 'dark'); 
       themeLogo.src = "img/logo-blanc.png";
-
    } else {
-      localStorage.setItem('theme', 'light');  // Si non c'est ligth
-      themeLogo.src = "img/logo-noir.png" ;
+      localStorage.setItem('theme', 'light');
+      themeLogo.src = "img/logo-noir.png" ; 
    }
 });
-
-
+// Mondale pour l'inscription
 const dial = `
 <dialog id="userDialog">
    <form action="#">
@@ -40,68 +37,60 @@ const dial = `
       <button type="submit" class="btnSend" id="submit">Send</button>
    </form>
 </dialog>`;
-
+// Const inscription
 const btnPopUp = document.querySelector('#newsletter');
 const dialogContainer = document.querySelector('#admin');
-
+// Ecoute du click
 btnPopUp.addEventListener('click', (e) => {
    e.preventDefault();
-   
    // Vérifie si le dialog existe déjà
    if (!document.querySelector('#userDialog')) {
       dialogContainer.insertAdjacentHTML('afterend', dial);
    }
-
-   // Variables
+   // const mondale
    const userDialog = document.querySelector('#userDialog');
    const btnPopUpClose = document.querySelector('.btnPopUpClose');
    const btn_send = document.querySelector('.btnSend');
-
    // Ouvre le dialogue
    userDialog.showModal();
-
-   // Ferme le dialog
+   // Ecoute du click // Ferme le dialog
    btnPopUpClose.addEventListener('click', (e) => {
       e.preventDefault();
       userDialog.close();
    });
-
-   // Ferme le modal en cliquant en dehors
+   // Ecoute du click // Ferme le modal en cliquant en dehors
    userDialog.addEventListener('click', (e) => {
       if (e.target === userDialog) {
          e.preventDefault();
          userDialog.close();
       }
    });
-
-   // Envoie le message
+   // Message d'inscription
    btn_send.addEventListener('click', (e) => {
       e.preventDefault();
       const user_name = document.querySelector('#name').value;
       userDialog.innerHTML = `Bonjour ${user_name} ! Nous sommes ravis de t'accueillir dans notre communauté. Explore nos produits/services et découvre comment nous pouvons t'aider à atteindre tes objectifs.`;
    });
-
    // Réinitialise les champs du formulaire
    document.querySelector('#name').value = "";
    document.querySelector('#pass').value = "";
 });
-
+// Const "contactez-nous"
 const btn_form = document.querySelector('#submit');
+// Ecoute du click
 btn_form.addEventListener('click', (e) => {
    e.preventDefault();
-
-   // Récupérer les valeurs des champs du formulaire
+   // Const champs du formulaire
    const form_name = document.querySelector('#form_name').value;
    const form_phone = document.querySelector('#form_phone').value;
    const form_company = document.querySelector('#form_company').value;
    const form_mail = document.querySelector('#form_mail').value;
-
    // Vérifie si tous les champs sont remplis
    if (!form_name || !form_phone || !form_company || !form_mail) {
       alert("Veuillez remplir tous les champs !");
       return;
    }
-
+   // Récupère les valeurs du select
    const options = [];
    const form_select = document.querySelector('#form_option');
    // Ajout des options sélectionnées
@@ -110,9 +99,8 @@ btn_form.addEventListener('click', (e) => {
          options.push(form_select.options[i].value);
       }
    }
-
    const form_precision = document.querySelector('#form_precision').value;
-
+   // Mondale
    const form = `
       <dialog id="userFrom">
          <p>Votre formulaire a bien été pris en compte. Voici les informations :</p>
@@ -123,21 +111,18 @@ btn_form.addEventListener('click', (e) => {
          <p>Renseignements : ${options.join(', ')}</p>
          <p>Object : ${form_precision}</p>
       </dialog>`;
-
    if (!document.querySelector('#userFrom')) {
       dialogContainer.insertAdjacentHTML('afterend', form);
    }
-
    const userFrom = document.querySelector('#userFrom');
    userFrom.showModal();
-
+   // Ecoute du click // Ferme le modal en cliquant en dehors
    userFrom.addEventListener('click', (e) => {
       if (e.target === userFrom) {
          e.preventDefault();
          userFrom.close();
       }
    });
-
    // Réinitialisation des champs du formulaire
    document.querySelector('#form_name').value = "";
    document.querySelector('#form_phone').value = "";
@@ -145,11 +130,11 @@ btn_form.addEventListener('click', (e) => {
    document.querySelector('#form_mail').value = "";
    document.querySelector('#form_precision').value = "";
 });
-
+// Const inscription
 const btn_registration = document.querySelector('#inscription');
 btn_registration.addEventListener('click', (e) => {
    e.preventDefault();
-
+   // Mondale
    const formPopUp = `
       <div id="userFormPopUp">
          <h1 class="subtitle">Contactez-nous</h1>
