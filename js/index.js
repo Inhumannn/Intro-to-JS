@@ -1,20 +1,21 @@
 // Const darkmode
-const themeswitch = document.querySelector('#darkmode');
+const themeSwitch = document.querySelector('#darkmode');
 const theme = document.querySelector('body');
 const themeLogo = document.querySelector( '#logo')
+const icone = document.querySelector('#icone')
 // Chargement de la page on vérifie si les thèmes dark y est ou pas (localStorage)
 const savedTheme = localStorage.getItem('theme');
-const savedLogo = localStorage.getItem('logo');
 if(savedTheme === 'dark'){
    // Ajoute le thème dark
    theme.classList.add('darkmondeon');
    themeLogo.src = theme.classList.contains('darkmondeon') ? "img/logo-blanc.png" : "img/logo-noir.png";
 };
 // Ecoute du click
-themeswitch.addEventListener('click', (e) => {
+themeSwitch.addEventListener('click', (e) => {
    e.preventDefault();
    // Ajoute la classe "darkmondeon"
-   theme.classList.toggle('darkmondeon'); 
+   theme.classList.toggle('darkmondeon');
+   icone.classList.toggle('fa-moon')
    // Sauvegarde l'état du thème (localStorage) // Changement du thème, logo
    localStorage.setItem('theme', theme.classList.contains('darkmondeon') ? 'dark' : 'light');
    themeLogo.src = theme.classList.contains('darkmondeon') ? "img/logo-blanc.png" : "img/logo-noir.png";

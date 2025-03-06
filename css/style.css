@@ -40,6 +40,9 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+body{
+    transition: background-color 0.5s ease-in-out ;
+}
 p{
     color: var(--color);
     font-family: var(--open-sans);
@@ -61,12 +64,18 @@ a:hover{
 .paddings_responsive{
     padding:0 15px; 
 }
+#theme-switcher i {
+    color: black;
+}
 
+.darkmondeon #theme-switcher i{
+    color:white;
+}
 /* Header */
 header{
     max-width: 1440px;
     margin:auto;
-    padding:50px 15px;
+    padding:30px 15px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -484,14 +493,37 @@ label input{
 
 /* projet js initiation */
 #admin{
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+}
+.darkmondeon #admin {
     background-color: var(--dark-background-color);
 }
+
 #darkmode{
     color:#fff;
-    background-color: var(--second-color);
+    border: none;
+    background-color: #fff;
     cursor:pointer;
+    transition: background-color 0.5s ease-in-out;
 }
-
+.darkmondeon #darkmode {
+    background-color: var(--dark-background-color);
+    transition: background-color 0.5s ease-in-out;
+}
+#newsletter {
+    color: black;
+    border: 1px solid;
+    background-color: #fff;
+    cursor:pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+.darkmondeon #newsletter {
+    color: white;
+    background-color: var(--dark-background-color);
+    transition: background-color 0.5s ease-in-out;
+}
 /* Changement de couleur */
 
 .darkmondeon,
@@ -500,10 +532,11 @@ label input{
 }
 
 .darkmondeon .secondary_main_title,
-.darkmondeon #team .teamworker h3,
+.darkmondeon #team .teamworker h3, 
+.fa-sun, .fa-moon,
 .darkmondeon p,
 .darkmondeon a{
-    color:#fff;
+    color:#ffffff;
 }
 
 .darkmondeon .burger_menu i{
